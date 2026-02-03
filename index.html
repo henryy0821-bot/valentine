@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffd6e8, #ffeef6);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        width: 340px;
+    }
+
+    .emoji {
+        font-size: 60px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        position: relative;
+        height: 90px;
+    }
+
+    button {
+        padding: 12px 26px;
+        font-size: 16px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    #yesBtn {
+        background: #ff4d88;
+        color: white;
+        margin-right: 15px;
+    }
+
+    #noBtn {
+        position: absolute;
+        background: #ccc;
+        color: black;
+        left: 160px;
+        top: 0;
+    }
+
+    /* Shake animation */
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-6px); }
+        50% { transform: translateX(6px); }
+        75% { transform: translateX(-6px); }
+        100% { transform: translateX(0); }
+    }
+
+    /* Celebration text */
+    .celebrate {
+        display: none;
+        margin-top: 20px;
+        animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .celebrate h1 {
+        color: #ff4d88;
+        margin-bottom: 5px;
+    }
+
+    .celebrate p {
+        font-size: 18px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="emoji">😺❤️</div>
+
+    <h2 id="question">Will you be my Valentine?</h2>
+
+    <div class="buttons" id="buttons">
+        <button id="yesBtn" onclick="yesClicked()">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+
+    <div class="celebrate" id="celebrateBox">
+        <h1>🎉 YAYYYY !!! 🎉</h1>
+        <p>Hurrayyy 💕</p>
+        <p>My Valentine is <b>Hoor</b> 😍</p>
+        <p>Forever & Always ❤️</p>
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseenter", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    function moveButton() {
+        noBtn.style.animation = "shake 0.3s";
+        setTimeout(() => noBtn.style.animation = "", 300);
+
+        const x = Math.random() * 190;
+        const y = Math.random() * 60;
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    function yesClicked() {
+        document.getElementById("question").innerText =
+            "She said YES! 💖";
+
+        document.getElementById("buttons").style.display = "none";
+        document.getElementById("celebrateBox").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
